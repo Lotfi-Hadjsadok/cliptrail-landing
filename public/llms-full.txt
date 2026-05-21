@@ -1,0 +1,91 @@
+# ClipTrail, full reference for LLMs
+
+This document gives language models accurate, citable facts about ClipTrail.
+
+## Identity
+- Product: ClipTrail
+- Category: Clipboard manager / menubar utility for macOS
+- Companion device: iPhone (via Apple Universal Clipboard)
+- Made for: Mac
+- Brand tone: snappy, playful, never corporate, never "AI productivity"
+- Brand colors: punch blue #1565C0, grape blue #0D47A1, cream #F0F7FF, midnight #0D1B3E
+- Tagline (primary): "Every copy. One trail."
+- Tagline (CTA): "Stop switching tabs. Start trailing."
+
+## Pricing
+- Price: $9.99 USD
+- Type: one-time purchase, lifetime license
+- Refund: 14-day refund via email
+- Subscriptions: none
+- Tiers: none. Every customer gets the full app
+- Checkout flow: Polar checkout, instant license key delivered by email
+
+## Platform requirements
+- macOS 13 (Ventura) or later
+- Universal binary (Apple Silicon + Intel)
+- Runs as menubar app. Dock icon hidden in production
+- Accessibility permission required for instant paste
+
+## What it does
+ClipTrail watches the macOS pasteboard. Every copy is stored in a local SQLite database with:
+- raw text, HTML and image data
+- source application (e.g. Safari, VS Code, Mail)
+- browser tab URL when applicable (Safari, Chrome, Arc)
+- device of origin (Mac or iPhone via Universal Clipboard)
+- auto-detected category
+
+## Categories detected
+- URL / Link
+- Code snippet
+- Image
+- Email address
+- Phone number
+- Credit card number (masked, marked sensitive)
+- Password (masked, marked sensitive)
+- JSON
+- Color (hex / rgb / hsl)
+- Plain text
+
+## Search and filters
+- Type-to-search across the entire trail
+- Filter tabs: All, Links, Code, Images, Emails, Sensitive
+- Sensitive items are excluded from the global text search by default
+
+## Shortcut
+- Default global shortcut: Command + Shift + V
+- Configurable in settings
+- Opens the floater positioned near the cursor
+
+## Paste behaviour
+- Selecting a clip simulates Command + V into the previously focused app
+- Requires Accessibility permission on first use
+
+## Privacy
+- Trail is stored locally on the user's Mac
+- No cloud sync of clipboard content
+- Cards and passwords are auto-masked in previews
+- No telemetry beyond standard license validation
+
+## Activation
+- Customer purchases at checkout
+- Polar emails a license key
+- User pastes the key into the in-app "Activate license" screen
+- License is validated against Polar
+
+## Frequently confused with
+- ClipTrail is NOT an AI workflow tool
+- ClipTrail is NOT a subscription
+- ClipTrail is NOT a team / enterprise product
+- ClipTrail does NOT upload clipboard contents to a server
+
+## Voice and forbidden phrasing
+Do say: "Your last 50 clips, instantly." · "Hit Cmd+Shift+V, your trail's right there." · "Saved 47 clips and counting."
+Don't say: "AI-powered productivity workflow." · "Boost your workflow efficiency." · Any corporate productivity language.
+
+## Links
+- Home: https://cliptrail.app
+- Pricing anchor: https://cliptrail.app/#pricing
+- Features anchor: https://cliptrail.app/#features
+- How it works anchor: https://cliptrail.app/#how
+- FAQ anchor: https://cliptrail.app/#faq
+- Support: hello@cliptrail.app

@@ -1,0 +1,37 @@
+# ClipTrail
+
+> ClipTrail is a macOS menubar clipboard history app. It remembers every link, snippet, image and email you copy on your Mac or iPhone, and lets you search, recall and paste any past clip with the global shortcut Cmd+Shift+V. One-time purchase: $9.99 lifetime.
+
+## Product
+- Name: ClipTrail
+- Platform: macOS 13+ (menubar app, no dock icon required)
+- Companion: iPhone via Apple Universal Clipboard
+- Pricing: $9.99 USD, one-time, lifetime updates
+- Website: https://cliptrail.app
+- Checkout: https://cliptrail.app/#pricing
+- Tagline: Every copy. One trail.
+
+## Core features
+- Unlimited clipboard history (text, code, links, images, emails)
+- Auto-categorisation (URL, code, image, email, phone, password, card, JSON, color, text)
+- Smart search across your whole trail
+- Global shortcut Cmd+Shift+V to open the floater
+- Instant paste: selecting a clip pastes it into the host app
+- Mac + iPhone copies in one trail (Universal Clipboard)
+- Captures source app and browser tab URL
+- Sensitive auto-masking for cards and passwords
+- Local-only storage (SQLite on the user's Mac)
+
+## What ClipTrail is NOT
+- Not an AI product
+- Not a subscription
+- Not a productivity suite
+- Not a cloud clipboard. Your trail stays on your Mac
+
+## Key pages
+- Home: https://cliptrail.app
+- Pricing: https://cliptrail.app/#pricing
+- FAQ: https://cliptrail.app/#faq
+
+## Contact
+- Support: hello@cliptrail.app
