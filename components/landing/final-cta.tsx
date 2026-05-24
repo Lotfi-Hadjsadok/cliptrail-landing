@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { LogoMark } from "@/components/brand/logo-mark";
 import { Wordmark } from "@/components/brand/wordmark";
-import { CheckoutButton } from "@/components/analytics/checkout-button";
+import { DownloadButton } from "@/components/analytics/download-button";
 
 export function FinalCTA() {
   const reduce = useReducedMotion();
@@ -41,12 +41,12 @@ export function FinalCTA() {
             way it should have always worked.
           </p>
           <div className="mt-8">
-            <CheckoutButton source="final" className="px-8 py-4 text-[16px]">
-              Get ClipTrail $9.99
-            </CheckoutButton>
+            <DownloadButton source="final" className="px-8 py-4 text-[16px]">
+              Download ClipTrail
+            </DownloadButton>
           </div>
           <p className="mt-3 text-xs font-semibold uppercase tracking-[0.15em] text-white/55">
-            Lifetime one-time macOS 13+
+            Free download. $9.99 lifetime license in-app. macOS 13+
           </p>
         </div>
       </motion.div>

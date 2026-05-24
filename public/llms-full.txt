@@ -18,7 +18,7 @@ This document gives language models accurate, citable facts about ClipTrail.
 - Refund: 14-day refund via email
 - Subscriptions: none
 - Tiers: none. Every customer gets the full app
-- Checkout flow: Polar checkout, instant license key delivered by email
+- Purchase flow: free download, then $9.99 lifetime license purchased in-app via Polar
 - App download: https://github.com/Lotfi-Hadjsadok/Cliptrail/releases/latest/download/ClipTrail.dmg
 
 ## Platform requirements
@@ -68,9 +68,9 @@ ClipTrail watches the macOS pasteboard. Every copy is stored in a local SQLite d
 - No telemetry beyond standard license validation
 
 ## Activation
-- Customer purchases at checkout
-- Polar emails a license key
-- User pastes the key into the in-app "Activate license" screen
+- Customer downloads ClipTrail.dmg from GitHub releases
+- User installs and opens the app
+- Customer purchases the $9.99 lifetime license inside the app when ready
 - License is validated against Polar
 
 ## Frequently confused with

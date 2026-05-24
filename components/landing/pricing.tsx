@@ -2,8 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Check, Sparkles } from "lucide-react";
-import { CheckoutButton } from "@/components/analytics/checkout-button";
-import { siteConfig } from "@/lib/site";
+import { DownloadButton } from "@/components/analytics/download-button";
 
 const INCLUDES = [
   "Unlimited clipboard history",
@@ -30,7 +29,8 @@ export function Pricing() {
           Pay once. Trail forever.
         </h2>
         <p className="mt-4 text-lg text-ct-body">
-          No subscriptions. No “Pro” tier. Just one fair price for the whole app.
+          Download free, then unlock the full trail for $9.99 inside the app. No
+          subscriptions. No “Pro” tier.
         </p>
       </div>
 
@@ -85,23 +85,14 @@ export function Pricing() {
           </ul>
 
           <div className="mt-8">
-            <CheckoutButton
+            <DownloadButton
               source="pricing"
               className="w-full px-7 py-4 text-[16px]"
             >
-              Get ClipTrail $9.99
-            </CheckoutButton>
+              Download ClipTrail
+            </DownloadButton>
             <p className="mt-3 text-center text-xs font-semibold text-ct-muted">
-              Opens secure checkout. macOS 13+. Instant license.
-            </p>
-            <p className="mt-2 text-center text-xs font-semibold text-ct-muted">
-              Already purchased?{" "}
-              <a
-                href={siteConfig.links.download}
-                className="text-ct-punch underline decoration-ct-punch/30 underline-offset-2 transition-colors hover:text-ct-midnight"
-              >
-                Download ClipTrail.dmg
-              </a>
+              Free download. $9.99 lifetime license in-app. macOS 13+.
             </p>
           </div>
         </div>

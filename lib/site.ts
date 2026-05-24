@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Every copy. One trail.",
   shortTagline: "Clipboard history, beautifully tracked.",
   description:
-    "Clipboard history for Mac. Search, recall and paste every link, snippet and image you copy on Mac or iPhone. One-time $9.99, no subscription.",
+    "Clipboard history for Mac. Download free, then unlock the full trail for $9.99 one-time in the app. No subscription.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
     "https://cliptrail.app",

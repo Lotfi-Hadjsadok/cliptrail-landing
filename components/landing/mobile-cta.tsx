@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckoutButton } from "@/components/analytics/checkout-button";
+import { DownloadButton } from "@/components/analytics/download-button";
 
 export function MobileCTA() {
   return (
@@ -11,16 +11,16 @@ export function MobileCTA() {
             $9.99
           </p>
           <p className="text-[11px] font-semibold text-ct-muted">
-            Lifetime one-time
+            $9.99 in-app, one-time
           </p>
         </div>
-        <CheckoutButton
+        <DownloadButton
           source="mobile"
           className="px-5 py-3 text-[14px]"
-          withArrow={false}
+          withIcon={false}
         >
-          Get ClipTrail
-        </CheckoutButton>
+          Download
+        </DownloadButton>
       </div>
     </div>
   );

@@ -8,8 +8,8 @@
 - Companion: iPhone via Apple Universal Clipboard
 - Pricing: $9.99 USD, one-time, lifetime updates
 - Website: https://cliptrail.app
-- Checkout: https://cliptrail.app/#pricing
 - Download: https://github.com/Lotfi-Hadjsadok/Cliptrail/releases/latest/download/ClipTrail.dmg
+- Pricing: https://cliptrail.app/#pricing
 - Tagline: Every copy. One trail.
 
 ## Core features

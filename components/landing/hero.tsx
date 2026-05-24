@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Apple, Sparkles } from "lucide-react";
 import { ProductMock } from "./product-mock";
-import { CheckoutButton } from "@/components/analytics/checkout-button";
+import { DownloadButton } from "@/components/analytics/download-button";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -52,9 +52,9 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.18 }}
             className="mt-7 flex flex-wrap items-center gap-3"
           >
-            <CheckoutButton source="hero" className="px-7 py-4 text-[16px]">
-              Get ClipTrail $9.99
-            </CheckoutButton>
+            <DownloadButton source="hero" className="px-7 py-4 text-[16px]">
+              Download ClipTrail
+            </DownloadButton>
             <a
               href="#how"
               className="ct-cta-ghost inline-flex items-center justify-center px-6 py-4 text-[15px]"
@@ -73,7 +73,7 @@ export function Hero() {
               <Apple size={14} className="text-ct-midnight" /> macOS menubar app
             </span>
             <span className="hidden h-3 w-px bg-ct-midnight/15 md:inline-block" />
-            <span>One-time purchase. No subscription.</span>
+            <span>Free download. Pay in-app when ready.</span>
             <span className="hidden h-3 w-px bg-ct-midnight/15 md:inline-block" />
             <span>Your trail stays on your Mac.</span>
           </motion.div>

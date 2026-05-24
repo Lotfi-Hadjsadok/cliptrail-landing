@@ -32,7 +32,8 @@ export const FAQ_ITEMS = [
   },
   {
     question: "How do I download and activate ClipTrail?",
-    answer: `Download ClipTrail.dmg for macOS 13+, open it, and drag ClipTrail to Applications. After checkout you receive a license key by email. Paste it into “Activate license” in the app and your trail unlocks instantly.`,
+    answer:
+      "Download ClipTrail.dmg for macOS 13+, open it, and drag ClipTrail to Applications. When you are ready, purchase the $9.99 lifetime license inside the app to unlock your full trail.",
   },
   {
     question: "Can I get a refund?",

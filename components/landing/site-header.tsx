@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { LogoMark } from "@/components/brand/logo-mark";
 import { Wordmark } from "@/components/brand/wordmark";
-import { CheckoutButton } from "@/components/analytics/checkout-button";
+import { DownloadButton } from "@/components/analytics/download-button";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -53,13 +53,13 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="hidden md:block">
-          <CheckoutButton
+          <DownloadButton
             source="nav"
             className="px-4 py-2 text-[13px]"
-            withArrow={false}
+            withIcon={false}
           >
-            Get ClipTrail $9.99
-          </CheckoutButton>
+            Download ClipTrail
+          </DownloadButton>
         </div>
       </div>
     </header>
