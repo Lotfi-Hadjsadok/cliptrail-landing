@@ -11,8 +11,6 @@ async function logoDataUrl() {
 
 export async function renderAppIcon(dim: number) {
   const src = await logoDataUrl();
-  const logoSize = Math.round(dim * 0.98);
-  const radius = dim >= 128 ? "22%" : dim >= 48 ? "20%" : "16%";
 
   return new ImageResponse(
     (
@@ -23,15 +21,14 @@ export async function renderAppIcon(dim: number) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(180deg, #1e7adf 0%, #1565C0 100%)",
-          borderRadius: radius,
+          background: "transparent",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
-          width={logoSize}
-          height={logoSize}
+          width={dim}
+          height={dim}
           alt=""
           style={{ objectFit: "contain" }}
         />

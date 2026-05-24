@@ -28,12 +28,11 @@ export const FAQ_ITEMS = [
   {
     question: "What macOS version do I need?",
     answer:
-      "ClipTrail is built for macOS 13 (Ventura) and newer. It runs as a tiny menubar app with no dock icon unless you want one.",
+      "ClipTrail is built for macOS 13 Ventura and newer. It runs as a tiny menubar app with no dock icon unless you want one.",
   },
   {
-    question: "How do I activate my license?",
-    answer:
-      "After checkout you receive a license key by email. Paste it into ClipTrail’s “Activate license” screen and your trail unlocks instantly.",
+    question: "How do I download and activate ClipTrail?",
+    answer: `Download ClipTrail.dmg for macOS 13+, open it, and drag ClipTrail to Applications. After checkout you receive a license key by email. Paste it into “Activate license” in the app and your trail unlocks instantly.`,
   },
   {
     question: "Can I get a refund?",

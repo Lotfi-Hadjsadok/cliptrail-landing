@@ -4,23 +4,24 @@
 
 ## Product
 - Name: ClipTrail
-- Platform: macOS 13+ (menubar app, no dock icon required)
+- Platform: macOS 13+ menubar app, no dock icon required
 - Companion: iPhone via Apple Universal Clipboard
 - Pricing: $9.99 USD, one-time, lifetime updates
 - Website: https://cliptrail.app
 - Checkout: https://cliptrail.app/#pricing
+- Download: https://github.com/Lotfi-Hadjsadok/Cliptrail/releases/latest/download/ClipTrail.dmg
 - Tagline: Every copy. One trail.
 
 ## Core features
-- Unlimited clipboard history (text, code, links, images, emails)
-- Auto-categorisation (URL, code, image, email, phone, password, card, JSON, color, text)
+- Unlimited clipboard history: text, code, links, images, emails
+- Auto-categorisation: URL, code, image, email, phone, password, card, JSON, color, text
 - Smart search across your whole trail
 - Global shortcut Cmd+Shift+V to open the floater
 - Instant paste: selecting a clip pastes it into the host app
-- Mac + iPhone copies in one trail (Universal Clipboard)
+- Mac + iPhone copies in one trail via Universal Clipboard
 - Captures source app and browser tab URL
 - Sensitive auto-masking for cards and passwords
-- Local-only storage (SQLite on the user's Mac)
+- Local-only storage in SQLite on the user's Mac
 
 ## What ClipTrail is NOT
 - Not an AI product

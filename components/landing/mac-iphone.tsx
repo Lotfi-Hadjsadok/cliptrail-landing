@@ -38,10 +38,10 @@ export function MacIphone() {
               ClipTrail tags every clip by source, so you always know where it
               came from.
             </p>
-            <ul className="mt-6 space-y-2 text-[15px] font-semibold text-white/85">
-              <li>· Universal Clipboard, finally browseable</li>
-              <li>· Source app + browser tab captured automatically</li>
-              <li>· One trail for both devices</li>
+            <ul className="mt-6 list-disc space-y-2 pl-5 text-[15px] font-semibold text-white/85">
+              <li>Universal Clipboard, finally browseable</li>
+              <li>Source app + browser tab captured automatically</li>
+              <li>One trail for both devices</li>
             </ul>
           </div>
 

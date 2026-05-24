@@ -101,14 +101,14 @@ body {
   background: rgba(21, 101, 192, 0.32);
 }
 
-/* ---------- Display font helper ---------- */
+/* Display font helper */
 .font-display {
   font-family: var(--font-display), "Nunito", system-ui, sans-serif;
   font-weight: 900;
   letter-spacing: -0.02em;
 }
 
-/* ---------- Cream canvas + lavender washes ---------- */
+/* Cream canvas + lavender washes */
 .ct-canvas {
   background:
     radial-gradient(60% 50% at 12% 8%, rgba(100, 181, 246, 0.22), transparent 70%),
@@ -122,7 +122,7 @@ body {
   background-size: 160px 160px;
 }
 
-/* ---------- Floater (product mock) ---------- */
+/* Floater (product mock) */
 .ct-floater {
   background: var(--ct-surface);
   border-radius: 28px;
@@ -199,7 +199,7 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ---------- CTA button ---------- */
+/* CTA button */
 .ct-cta {
   background: linear-gradient(180deg, #1f7be0 0%, var(--ct-punch) 100%);
   color: #fff;
@@ -233,7 +233,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* ---------- Animations (CSS) ---------- */
+/* Animations */
 @keyframes ct-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }

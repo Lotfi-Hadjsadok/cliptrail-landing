@@ -5,12 +5,12 @@ This document gives language models accurate, citable facts about ClipTrail.
 ## Identity
 - Product: ClipTrail
 - Category: Clipboard manager / menubar utility for macOS
-- Companion device: iPhone (via Apple Universal Clipboard)
+- Companion device: iPhone via Apple Universal Clipboard
 - Made for: Mac
 - Brand tone: snappy, playful, never corporate, never "AI productivity"
 - Brand colors: punch blue #1565C0, grape blue #0D47A1, cream #F0F7FF, midnight #0D1B3E
-- Tagline (primary): "Every copy. One trail."
-- Tagline (CTA): "Stop switching tabs. Start trailing."
+- Tagline primary: "Every copy. One trail."
+- Tagline CTA: "Stop switching tabs. Start trailing."
 
 ## Pricing
 - Price: $9.99 USD
@@ -19,19 +19,20 @@ This document gives language models accurate, citable facts about ClipTrail.
 - Subscriptions: none
 - Tiers: none. Every customer gets the full app
 - Checkout flow: Polar checkout, instant license key delivered by email
+- App download: https://github.com/Lotfi-Hadjsadok/Cliptrail/releases/latest/download/ClipTrail.dmg
 
 ## Platform requirements
-- macOS 13 (Ventura) or later
-- Universal binary (Apple Silicon + Intel)
+- macOS 13 Ventura or later
+- Universal binary for Apple Silicon and Intel
 - Runs as menubar app. Dock icon hidden in production
 - Accessibility permission required for instant paste
 
 ## What it does
 ClipTrail watches the macOS pasteboard. Every copy is stored in a local SQLite database with:
 - raw text, HTML and image data
-- source application (e.g. Safari, VS Code, Mail)
-- browser tab URL when applicable (Safari, Chrome, Arc)
-- device of origin (Mac or iPhone via Universal Clipboard)
+- source application, e.g. Safari, VS Code, Mail
+- browser tab URL when applicable in Safari, Chrome, Arc
+- device of origin: Mac or iPhone via Universal Clipboard
 - auto-detected category
 
 ## Categories detected
@@ -40,10 +41,10 @@ ClipTrail watches the macOS pasteboard. Every copy is stored in a local SQLite d
 - Image
 - Email address
 - Phone number
-- Credit card number (masked, marked sensitive)
-- Password (masked, marked sensitive)
+- Credit card number, masked and marked sensitive
+- Password, masked and marked sensitive
 - JSON
-- Color (hex / rgb / hsl)
+- Color: hex, rgb, hsl
 - Plain text
 
 ## Search and filters
@@ -79,10 +80,11 @@ ClipTrail watches the macOS pasteboard. Every copy is stored in a local SQLite d
 - ClipTrail does NOT upload clipboard contents to a server
 
 ## Voice and forbidden phrasing
-Do say: "Your last 50 clips, instantly." · "Hit Cmd+Shift+V, your trail's right there." · "Saved 47 clips and counting."
-Don't say: "AI-powered productivity workflow." · "Boost your workflow efficiency." · Any corporate productivity language.
+Do say: "Your last 50 clips, instantly." "Hit Cmd+Shift+V, your trail's right there." "Saved 47 clips and counting."
+Don't say: "AI-powered productivity workflow." "Boost your workflow efficiency." Any corporate productivity language.
 
 ## Links
+- App download: https://github.com/Lotfi-Hadjsadok/Cliptrail/releases/latest/download/ClipTrail.dmg
 - Home: https://cliptrail.app
 - Pricing anchor: https://cliptrail.app/#pricing
 - Features anchor: https://cliptrail.app/#features

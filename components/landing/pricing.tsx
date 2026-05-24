@@ -3,12 +3,13 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Check, Sparkles } from "lucide-react";
 import { CheckoutButton } from "@/components/analytics/checkout-button";
+import { siteConfig } from "@/lib/site";
 
 const INCLUDES = [
   "Unlimited clipboard history",
   "Smart search & auto-categories",
   "⌘⇧V instant paste",
-  "Mac + iPhone (Universal Clipboard)",
+  "Mac + iPhone with Universal Clipboard",
   "Source app & browser tab capture",
   "Local storage. Your trail stays on your Mac",
   "Lifetime updates",
@@ -60,7 +61,7 @@ export function Pricing() {
               $9.99
             </span>
             <span className="mb-3 text-sm font-bold text-ct-muted">
-              USD · forever
+              USD, forever
             </span>
           </div>
 
@@ -91,7 +92,16 @@ export function Pricing() {
               Get ClipTrail $9.99
             </CheckoutButton>
             <p className="mt-3 text-center text-xs font-semibold text-ct-muted">
-              Opens secure checkout · macOS 13+ · Instant license
+              Opens secure checkout. macOS 13+. Instant license.
+            </p>
+            <p className="mt-2 text-center text-xs font-semibold text-ct-muted">
+              Already purchased?{" "}
+              <a
+                href={siteConfig.links.download}
+                className="text-ct-punch underline decoration-ct-punch/30 underline-offset-2 transition-colors hover:text-ct-midnight"
+              >
+                Download ClipTrail.dmg
+              </a>
             </p>
           </div>
         </div>

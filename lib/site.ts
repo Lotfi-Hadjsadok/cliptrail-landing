@@ -15,6 +15,9 @@ export const siteConfig = {
     checkout:
       process.env.NEXT_PUBLIC_POLAR_CHECKOUT_URL ||
       "https://buy.polar.sh/polar_cl_OAK7MkjYffDn1xZI1ff25KXII5Vz4iwzr0Js316G5y7",
+    download:
+      process.env.NEXT_PUBLIC_APP_DOWNLOAD_URL ||
+      "https://github.com/Lotfi-Hadjsadok/Cliptrail/releases/latest/download/ClipTrail.dmg",
     support: "mailto:hello@cliptrail.app",
   },
   ga: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",

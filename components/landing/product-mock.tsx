@@ -384,7 +384,6 @@ function ClipMeta({ clip }: { clip: ClipItem }) {
       <span className="shrink-0">{clip.time}</span>
       {clip.device === "iphone" ? (
         <>
-          <span className="text-ct-lavender-mid">·</span>
           <span className="inline-flex shrink-0 items-center gap-0.5 rounded-full bg-blue-50 px-1.5 py-px font-bold text-blue-500">
             <Smartphone size={8} strokeWidth={2.5} />
             iPhone
@@ -394,7 +393,6 @@ function ClipMeta({ clip }: { clip: ClipItem }) {
         <>
           {clip.sourceApp ? (
             <>
-              <span className="text-ct-lavender-mid">·</span>
               <span className="max-w-[72px] shrink truncate rounded-full bg-ct-lavender-light px-1.5 py-px text-ct-muted ring-1 ring-ct-lavender-mid/30">
                 {clip.sourceApp}
               </span>
@@ -402,7 +400,6 @@ function ClipMeta({ clip }: { clip: ClipItem }) {
           ) : null}
           {clip.sourceUrl ? (
             <>
-              <span className="text-ct-lavender-mid">·</span>
               <span className="inline-flex max-w-[96px] min-w-0 shrink items-center gap-1 truncate rounded-full bg-ct-lavender-light py-px pr-1.5 pl-1 text-ct-lavender-text ring-1 ring-ct-lavender-mid/35">
                 <Globe size={9} strokeWidth={2.5} className="shrink-0" />
                 <span className="truncate">{clip.sourceUrl}</span>
