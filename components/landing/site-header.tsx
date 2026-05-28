@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { LogoMark } from "@/components/brand/logo-mark";
 import { Wordmark } from "@/components/brand/wordmark";
 import { DownloadButton } from "@/components/analytics/download-button";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -33,23 +34,27 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5">
-        <a
+        <TrackedLink
           href="#top"
+          source="nav"
+          label="Logo"
           className="flex items-center gap-2"
           aria-label="ClipTrail home"
         >
           <LogoMark size={40} priority />
           <Wordmark size="md" />
-        </a>
+        </TrackedLink>
         <nav className="hidden items-center gap-7 md:flex">
           {nav.map((item) => (
-            <a
+            <TrackedLink
               key={item.href}
               href={item.href}
+              source="nav"
+              label={item.label}
               className="font-display text-sm font-bold text-ct-midnight/75 transition-colors hover:text-ct-punch"
             >
               {item.label}
-            </a>
+            </TrackedLink>
           ))}
         </nav>
         <div className="hidden md:block">

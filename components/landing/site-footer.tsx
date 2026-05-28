@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { LogoMark } from "@/components/brand/logo-mark";
 import { Wordmark } from "@/components/brand/wordmark";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -19,22 +19,42 @@ export function SiteFooter() {
         </div>
 
         <FooterCol title="Product">
-          <FooterLink href="#features">Features</FooterLink>
-          <FooterLink href="#how">How it works</FooterLink>
-          <FooterLink href="#pricing">Pricing</FooterLink>
-          <FooterLink href="#faq">FAQ</FooterLink>
+          <FooterLink href="#features" label="Features">
+            Features
+          </FooterLink>
+          <FooterLink href="#how" label="How it works">
+            How it works
+          </FooterLink>
+          <FooterLink href="#pricing" label="Pricing">
+            Pricing
+          </FooterLink>
+          <FooterLink href="#faq" label="FAQ">
+            FAQ
+          </FooterLink>
         </FooterCol>
 
         <FooterCol title="Company">
-          <FooterLink href="mailto:hello@cliptrail.app">Support</FooterLink>
-          <FooterLink href="/privacy">Privacy</FooterLink>
-          <FooterLink href="/terms">Terms</FooterLink>
+          <FooterLink href="mailto:hello@cliptrail.app" label="Support">
+            Support
+          </FooterLink>
+          <FooterLink href="/privacy" label="Privacy">
+            Privacy
+          </FooterLink>
+          <FooterLink href="/terms" label="Terms">
+            Terms
+          </FooterLink>
         </FooterCol>
 
         <FooterCol title="For AI">
-          <FooterLink href="/llms.txt">llms.txt</FooterLink>
-          <FooterLink href="/llms-full.txt">llms-full.txt</FooterLink>
-          <FooterLink href="/sitemap.xml">Sitemap</FooterLink>
+          <FooterLink href="/llms.txt" label="llms.txt">
+            llms.txt
+          </FooterLink>
+          <FooterLink href="/llms-full.txt" label="llms-full.txt">
+            llms-full.txt
+          </FooterLink>
+          <FooterLink href="/sitemap.xml" label="Sitemap">
+            Sitemap
+          </FooterLink>
         </FooterCol>
       </div>
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between border-t border-ct-midnight/5 px-5 py-5 text-xs text-ct-muted">
@@ -64,19 +84,23 @@ function FooterCol({
 
 function FooterLink({
   href,
+  label,
   children,
 }: {
   href: string;
+  label: string;
   children: React.ReactNode;
 }) {
   return (
     <li>
-      <Link
+      <TrackedLink
         href={href}
+        source="footer"
+        label={label}
         className="text-ct-body transition-colors hover:text-ct-punch"
       >
         {children}
-      </Link>
+      </TrackedLink>
     </li>
   );
 }

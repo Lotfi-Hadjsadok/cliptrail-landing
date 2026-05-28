@@ -6,7 +6,7 @@ import { Smartphone, Laptop, ArrowRight } from "lucide-react";
 export function MacIphone() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-24">
+    <section id="mac-iphone" className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-24">
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

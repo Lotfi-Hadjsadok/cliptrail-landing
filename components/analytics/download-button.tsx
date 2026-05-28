@@ -1,38 +1,11 @@
 "use client";
 
 import { Download } from "lucide-react";
+import { trackFileDownload, type DownloadSource } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-export type DownloadSource =
-  | "hero"
-  | "nav"
-  | "pricing"
-  | "final"
-  | "mobile"
-  | "footer"
-  | "features";
-
-type GtagWindow = typeof window & {
-  gtag?: (
-    command: "event",
-    name: string,
-    params: Record<string, unknown>,
-  ) => void;
-};
-
-function fireDownloadClick(source: DownloadSource) {
-  if (typeof window === "undefined") return;
-  const w = window as GtagWindow;
-  if (typeof w.gtag !== "function") return;
-  w.gtag("event", "file_download", {
-    file_extension: "dmg",
-    file_name: "ClipTrail.dmg",
-    link_url: siteConfig.links.download,
-    source,
-  });
-  w.gtag("event", "cta_click", { source, label: "download" });
-}
+export type { DownloadSource } from "@/lib/analytics";
 
 type Props = {
   source: DownloadSource;
@@ -54,7 +27,9 @@ export function DownloadButton({
   return (
     <a
       href={siteConfig.links.download}
-      onClick={() => fireDownloadClick(source)}
+      onClick={() =>
+        trackFileDownload(source, siteConfig.links.download)
+      }
       aria-label={ariaLabel}
       className={cn(
         "inline-flex items-center justify-center gap-2 px-6 py-3.5 text-[15px]",

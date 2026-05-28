@@ -3,36 +3,9 @@
 import { useActionState, useEffect } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { buildCheckoutUrl, type CheckoutSource } from "@/actions/checkout";
+import { trackBeginCheckout } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
-
-type GtagWindow = typeof window & {
-  gtag?: (
-    command: "event",
-    name: string,
-    params: Record<string, unknown>,
-  ) => void;
-};
-
-function fireBeginCheckout(source: CheckoutSource) {
-  if (typeof window === "undefined") return;
-  const w = window as GtagWindow;
-  if (typeof w.gtag !== "function") return;
-  w.gtag("event", "begin_checkout", {
-    currency: siteConfig.currency,
-    value: siteConfig.price,
-    items: [
-      {
-        item_id: "cliptrail-lifetime",
-        item_name: "ClipTrail Lifetime",
-        price: siteConfig.price,
-        quantity: 1,
-      },
-    ],
-    source,
-  });
-  w.gtag("event", "cta_click", { source, label: "checkout" });
-}
 
 type Props = {
   source: CheckoutSource;
@@ -73,7 +46,9 @@ export function CheckoutButton({
       <input type="hidden" name="source" value={source} />
       <button
         type="submit"
-        onClick={() => fireBeginCheckout(source)}
+        onClick={() =>
+          trackBeginCheckout(source, siteConfig.price, siteConfig.currency)
+        }
         disabled={isPending}
         aria-label={ariaLabel}
         className={cn(

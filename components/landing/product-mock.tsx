@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   Search,
@@ -22,11 +22,19 @@ type ClipItem = {
   badgeColor: string;
   title: string;
   time: string;
-  category: "url" | "code" | "email" | "phone" | "image" | "text";
+  category:
+    | "url"
+    | "code"
+    | "email"
+    | "phone"
+    | "image"
+    | "text"
+    | "password";
   device?: "mac" | "iphone";
   sourceApp?: string;
   sourceUrl?: string;
   mono?: boolean;
+  masked?: boolean;
 };
 
 const BASE_CLIPS: ClipItem[] = [
@@ -71,10 +79,44 @@ const BASE_CLIPS: ClipItem[] = [
     badgeBg: "#B2EBF2",
     badgeColor: "#006064",
     title: "screenshot pricing page.png",
-    time: "3m ago",
+    time: "2m ago",
     category: "image",
     device: "mac",
     sourceApp: "Preview",
+  },
+  {
+    id: "5",
+    badge: "TEXT",
+    badgeBg: "#FFE0B2",
+    badgeColor: "#E65100",
+    title: "Ship the landing page by Friday",
+    time: "3m ago",
+    category: "text",
+    device: "mac",
+    sourceApp: "Notes",
+  },
+  {
+    id: "6",
+    badge: "PASS",
+    badgeBg: "#FFCDD2",
+    badgeColor: "#B71C1C",
+    title: "••••••••••••",
+    time: "5m ago",
+    category: "password",
+    device: "mac",
+    sourceApp: "1Password",
+    masked: true,
+  },
+  {
+    id: "7",
+    badge: "PHONE",
+    badgeBg: "#C8E6C9",
+    badgeColor: "#1B5E20",
+    title: "+1 (628) 555-0142",
+    time: "8m ago",
+    category: "phone",
+    device: "mac",
+    sourceApp: "Messages",
   },
 ];
 
@@ -89,18 +131,35 @@ const IPHONE_CLIP: ClipItem = {
   device: "iphone",
 };
 
+const FILTER_CATEGORIES = [
+  "url",
+  "code",
+  "email",
+  "image",
+  "text",
+  "password",
+  "phone",
+] as const satisfies readonly ClipItem["category"][];
+
 const FILTERS = [
   { id: "all", label: "All" },
   { id: "url", label: "Links" },
   { id: "code", label: "Code" },
-  { id: "image", label: "Images" },
   { id: "email", label: "Emails" },
+  { id: "image", label: "Images" },
+  { id: "text", label: "Text" },
+  { id: "password", label: "Passwords" },
+  { id: "phone", label: "Phone" },
 ] as const;
 
+type FilterId = (typeof FILTERS)[number]["id"];
+
+const FILTER_DEMO_MS = 680;
+
 const PHASE_MS: Record<Phase, number> = {
-  trail: 2400,
+  trail: 2800,
   search: 3200,
-  filter: 2600,
+  filter: (FILTER_CATEGORIES.length + 1) * FILTER_DEMO_MS + 400,
   iphone: 2600,
   paste: 3000,
 };
@@ -109,9 +168,10 @@ const PHASES: Phase[] = ["trail", "search", "filter", "iphone", "paste"];
 
 export function ProductMock() {
   const reduce = useReducedMotion();
+  const filterStripRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<Phase>("trail");
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilter, setActiveFilter] = useState<(typeof FILTERS)[number]["id"]>("all");
+  const [activeFilter, setActiveFilter] = useState<FilterId>("all");
   const [iphoneArrived, setIphoneArrived] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [pasted, setPasted] = useState(false);
@@ -152,11 +212,22 @@ export function ProductMock() {
 
     if (phase === "filter") {
       setSearchQuery("");
-      setActiveFilter("url");
       setIphoneArrived(false);
       setCopiedId(null);
       setPasted(false);
-      return;
+      setActiveFilter("all");
+
+      let step = -1;
+      const interval = setInterval(() => {
+        step += 1;
+        if (step >= FILTER_CATEGORIES.length) {
+          clearInterval(interval);
+          return;
+        }
+        setActiveFilter(FILTER_CATEGORIES[step]);
+      }, FILTER_DEMO_MS);
+
+      return () => clearInterval(interval);
     }
 
     if (phase === "iphone") {
@@ -177,6 +248,28 @@ export function ProductMock() {
       return () => clearTimeout(t);
     }
   }, [phase]);
+
+  useEffect(() => {
+    if (!filterStripRef.current) return;
+
+    if (phase === "filter") {
+      const activeChip = filterStripRef.current.querySelector(
+        '[data-filter-active="true"]',
+      );
+      activeChip?.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+      return;
+    }
+
+    if (activeFilter === "all") {
+      filterStripRef.current.scrollLeft = 0;
+    }
+  }, [activeFilter, phase]);
+
+  const showFilteredList = phase === "filter" && activeFilter !== "all";
 
   const clips = useMemo(() => {
     const list = iphoneArrived ? [IPHONE_CLIP, ...BASE_CLIPS] : BASE_CLIPS;
@@ -262,17 +355,21 @@ export function ProductMock() {
           </div>
         </div>
 
-        <div className="flex gap-1.5 overflow-x-auto px-3 pt-3 [scrollbar-width:none]">
+        <div
+          ref={filterStripRef}
+          className="flex gap-1.5 overflow-x-auto px-3 pt-3 [scrollbar-width:none]"
+        >
           {FILTERS.map((f) => (
             <motion.span
               key={f.id}
               layout
+              data-filter-active={activeFilter === f.id ? "true" : undefined}
               className={cn(
                 "ct-category-badge shrink-0 transition-colors duration-300",
                 activeFilter === f.id ? "ct-chip-on" : "ct-chip-off",
               )}
               animate={
-                phase === "filter" && f.id === "url" && !reduce
+                phase === "filter" && activeFilter === f.id && !reduce
                   ? { scale: [1, 1.08, 1] }
                   : { scale: 1 }
               }
@@ -283,61 +380,33 @@ export function ProductMock() {
           ))}
         </div>
 
-        <div className="relative min-h-[280px] space-y-1.5 px-3 pb-16 pt-3">
-          <AnimatePresence mode="popLayout" initial={false}>
-            {clips.map((clip) => (
-              <motion.div
-                key={clip.id}
-                layout
-                initial={reduce ? false : { opacity: 0, y: 12, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={reduce ? undefined : { opacity: 0, y: -8, scale: 0.98 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className={cn(
-                  "relative px-2.5 py-2",
-                  copiedId === clip.id || (phase === "paste" && clip.id === "1")
-                    ? "ct-item-hi"
-                    : "ct-item-plain",
-                )}
-              >
-                <div className="flex items-start gap-2.5">
-                  <span
-                    className="ct-category-badge mt-0.5 shrink-0"
-                    style={{
-                      background: clip.badgeBg,
-                      color: clip.badgeColor,
-                    }}
-                  >
-                    {clip.badge === "IMG" ? (
-                      <ImageIcon size={11} strokeWidth={2.5} />
-                    ) : (
-                      clip.badge
-                    )}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p
-                      className={cn(
-                        "truncate text-[12px] font-bold text-ct-midnight",
-                        clip.mono && "font-mono text-[11px] font-semibold",
-                      )}
-                    >
-                      {clip.title}
-                    </p>
-                    <ClipMeta clip={clip} />
-                  </div>
-                  {copiedId === clip.id ? (
-                    <motion.span
-                      initial={reduce ? false : { opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="shrink-0 rounded-full bg-ct-spearmint-soft px-2 py-1 font-display text-[9px] font-extrabold tracking-wide text-ct-spearmint-text"
-                    >
-                      ✓ COPIED
-                    </motion.span>
-                  ) : null}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+        <div className="relative h-[360px] overflow-y-auto px-3 pb-16 pt-3 [scrollbar-width:none]">
+          {showFilteredList ? (
+            <AnimatePresence mode="wait" initial={false}>
+              {clips.map((clip) => (
+                <ClipRow
+                  key={clip.id}
+                  clip={clip}
+                  copiedId={copiedId}
+                  highlight={copiedId === clip.id || (phase === "paste" && clip.id === "1")}
+                  reduce={reduce}
+                  animate
+                />
+              ))}
+            </AnimatePresence>
+          ) : (
+            <div className="space-y-1.5">
+              {clips.map((clip) => (
+                <ClipRow
+                  key={clip.id}
+                  clip={clip}
+                  copiedId={copiedId}
+                  highlight={copiedId === clip.id || (phase === "paste" && clip.id === "1")}
+                  reduce={reduce}
+                />
+              ))}
+            </div>
+          )}
 
           {clips.length === 0 ? (
             <div className="rounded-2xl bg-ct-lavender-light px-4 py-8 text-center text-[12px] font-semibold text-ct-muted">
@@ -349,7 +418,7 @@ export function ProductMock() {
         <div className="absolute inset-x-0 bottom-0">
           <div className="ct-fl-footer flex items-center justify-between">
             <span className="font-display text-[11px] font-extrabold text-ct-grape">
-              {iphoneArrived ? "48 clips" : "47 clips"}
+              {iphoneArrived ? "54 clips" : "53 clips"}
             </span>
             <span className="inline-flex items-center gap-1 font-display text-[10px] font-extrabold text-ct-spearmint-text">
               <Sparkles size={10} strokeWidth={2.5} />
@@ -375,6 +444,87 @@ export function ProductMock() {
         ) : null}
       </AnimatePresence>
     </div>
+  );
+}
+
+function ClipRow({
+  clip,
+  copiedId,
+  highlight,
+  reduce,
+  animate = false,
+}: {
+  clip: ClipItem;
+  copiedId: string | null;
+  highlight: boolean;
+  reduce: boolean;
+  animate?: boolean;
+}) {
+  const content = (
+    <div className="flex items-start gap-2.5">
+      <span
+        className="ct-category-badge mt-0.5 shrink-0"
+        style={{
+          background: clip.badgeBg,
+          color: clip.badgeColor,
+        }}
+      >
+        {clip.badge === "IMG" ? (
+          <ImageIcon size={11} strokeWidth={2.5} />
+        ) : (
+          clip.badge
+        )}
+      </span>
+      <div className="min-w-0 flex-1">
+        <p
+          className={cn(
+            "truncate text-[12px] font-bold text-ct-midnight",
+            clip.mono && "font-mono text-[11px] font-semibold",
+            clip.masked && "tracking-[0.2em] text-ct-muted",
+          )}
+        >
+          {clip.title}
+        </p>
+        <ClipMeta clip={clip} />
+      </div>
+      {copiedId === clip.id ? (
+        <motion.span
+          initial={reduce ? false : { opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="shrink-0 rounded-full bg-ct-spearmint-soft px-2 py-1 font-display text-[9px] font-extrabold tracking-wide text-ct-spearmint-text"
+        >
+          ✓ COPIED
+        </motion.span>
+      ) : null}
+    </div>
+  );
+
+  if (!animate) {
+    return (
+      <div
+        className={cn(
+          "relative mb-1.5 px-2.5 py-2 last:mb-0",
+          highlight ? "ct-item-hi" : "ct-item-plain",
+        )}
+      >
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={reduce ? false : { opacity: 0, y: 10, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={reduce ? undefined : { opacity: 0, y: -8, scale: 0.98 }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      className={cn(
+        "relative mb-1.5 px-2.5 py-2 last:mb-0",
+        highlight ? "ct-item-hi" : "ct-item-plain",
+      )}
+    >
+      {content}
+    </motion.div>
   );
 }
 

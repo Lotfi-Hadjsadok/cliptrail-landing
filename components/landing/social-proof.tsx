@@ -24,7 +24,7 @@ const QUOTES = [
 export function SocialProof() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative mx-auto w-full max-w-6xl px-5 pb-4 pt-2 md:pb-6">
+    <section id="social-proof" className="relative mx-auto w-full max-w-6xl px-5 pb-4 pt-2 md:pb-6">
       <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-ct-muted">
         <div className="flex items-center gap-1.5">
           {[0, 1, 2, 3, 4].map((i) => (

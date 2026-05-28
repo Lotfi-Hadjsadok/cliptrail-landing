@@ -1,3 +1,4 @@
+import { PageAnalytics } from "@/components/analytics/page-analytics";
 import { SiteHeader } from "@/components/landing/site-header";
 import { Hero } from "@/components/landing/hero";
 import { SocialProof } from "@/components/landing/social-proof";
@@ -26,6 +27,7 @@ export default function Home() {
       </main>
       <SiteFooter />
       <MobileCTA />
+      <PageAnalytics />
     </>
   );
 }

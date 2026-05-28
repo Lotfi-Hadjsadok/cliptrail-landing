@@ -8,7 +8,7 @@ import { DownloadButton } from "@/components/analytics/download-button";
 export function FinalCTA() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
+    <section id="final" className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

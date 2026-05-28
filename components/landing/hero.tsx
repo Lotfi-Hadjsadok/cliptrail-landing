@@ -2,8 +2,9 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Apple, Sparkles } from "lucide-react";
-import { ProductMock } from "./product-mock";
 import { DownloadButton } from "@/components/analytics/download-button";
+import { TrackedLink } from "@/components/analytics/tracked-link";
+import { ProductMock } from "./product-mock";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -55,12 +56,15 @@ export function Hero() {
             <DownloadButton source="hero" className="px-7 py-4 text-[16px]">
               Download ClipTrail
             </DownloadButton>
-            <a
+            <TrackedLink
               href="#how"
+              source="hero"
+              label="See how it works"
+              ctaLabel="secondary"
               className="ct-cta-ghost inline-flex items-center justify-center px-6 py-4 text-[15px]"
             >
               See how it works
-            </a>
+            </TrackedLink>
           </motion.div>
 
           <motion.div

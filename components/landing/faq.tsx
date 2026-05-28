@@ -2,6 +2,7 @@
 
 import * as Accordion from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
+import { trackFaqExpand } from "@/lib/analytics";
 import { faqJsonLd } from "@/lib/seo";
 
 export const FAQ_ITEMS = [
@@ -59,6 +60,12 @@ export function FAQ() {
       <Accordion.Root
         type="single"
         collapsible
+        onValueChange={(value) => {
+          if (!value) return;
+          const index = Number(value.replace("item-", ""));
+          const item = FAQ_ITEMS[index];
+          if (item) trackFaqExpand(index, item.question);
+        }}
         className="mt-10 divide-y divide-ct-midnight/[0.06] overflow-hidden rounded-3xl bg-white ring-1 ring-ct-midnight/[0.05]"
       >
         {FAQ_ITEMS.map((item, i) => (
